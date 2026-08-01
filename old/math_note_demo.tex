@@ -1,0 +1,714 @@
+\documentclass{ctexart} 
+% ctexbook  适合长文档：chapter、section、subsection、subsubsection
+% ctexart   适合短文档：section、subsection、subsubsection
+
+% ---------- 导言区字体配置 ----------
+
+% 1. ctex 宏包（自动加载 fandol）
+\usepackage[UTF8,fontset=fandol]{ctex}
+\setCJKmainfont{SimSun}[
+    BoldFont={SimSun},%          粗体仍使用宋体字形
+    BoldFeatures={FakeBold=3},%  以 FakeBold 模拟加粗，实现“宋体粗体”
+]
+\setCJKsansfont{KaiTi}
+\setCJKmonofont{FangSong}
+% 2. 西文字体：Computer Modern Unicode
+\usepackage{fontspec}
+\setmainfont{cmun}[
+    Extension = .otf,
+    UprightFont = *rm,
+    ItalicFont = *ti,
+    SlantedFont = *sl,
+    BoldFont = *bx,
+    BoldItalicFont = *bi,
+    BoldSlantedFont = *bl,
+]
+\setsansfont{cmun}[
+    Extension = .otf,
+    UprightFont = *ss,
+    ItalicFont = *si,
+    BoldFont = *sx,
+    BoldItalicFont = *so,
+]
+\setmonofont{cmun}[
+    Extension = .otf,
+    UprightFont = *btl,
+    ItalicFont = *bto,
+    BoldFont = *tb,
+    BoldItalicFont = *tx,
+]
+% 3. 数学字体（传统方案，非 unicode-math）
+% \usepackage{amsmath,amssymb}
+% \usepackage{mathrsfs}   % 用于 \CMcal
+% \usepackage{eucal}      % 用于 \EuScript
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setmathfont{Latin Modern Math}
+% --------------------------------
+
+% ---------- 页面设置 ----------
+\usepackage{geometry} % 页面设置
+\geometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm} % 页边距
+% ----------------------------
+
+% ---------- 链接 ----------
+\usepackage{hyperref} % 超链接支持
+\hypersetup{
+    colorlinks=true, % 启用彩色链接
+    linkcolor=red, % 目录链接颜色
+}
+% -------------------------
+
+% ---------- 颜色 ----------
+\usepackage{xcolor}
+% code 
+\definecolor{codebg}{RGB}{31,31,31} % 代码背景色
+\definecolor{code}{RGB}{204,204,204} % 代码基本颜色
+\definecolor{codecom}{RGB}{73,222,76} % 代码注释颜色
+\definecolor{codekeys}{RGB}{50,201,255} % 代码关键词颜色
+% math
+\definecolor{math-bd-blue}{HTML}{2196f3} % 数学边框蓝色
+\definecolor{math-bg-blue}{HTML}{e3f2fd} % 数学背景蓝色
+\definecolor{math-bd-green}{HTML}{4caf50} % 数学边框绿色
+\definecolor{math-bg-green}{HTML}{e8f5e9} % 数学背景绿色
+\definecolor{math-bd-orrange}{HTML}{ff9800} % 数学边框橙色
+\definecolor{math-bg-orrange}{HTML}{fff3e0} % 数学背景橙色
+\definecolor{math-bd-red}{HTML}{f44336} % 数学边框红色
+\definecolor{math-bg-red}{HTML}{ffebee} % 数学背景红色
+\definecolor{math-bd-violet}{HTML}{9c27b0} % 数学边框紫色
+\definecolor{math-bg-violet}{HTML}{f3e5f5} % 数学背景紫色
+\definecolor{math-bd-aoi}{HTML}{00bcd4} % 数学边框青色
+\definecolor{math-bg-aoi}{HTML}{e0f7fa} % 数学背景青色
+% -------------------------
+
+% ---------- 表格与列表 ----------
+\usepackage{booktabs}       % 三线表
+\usepackage{tabularx}       % 自适应列宽
+\usepackage{enumitem}       % 列表定制
+\setlist{nosep, left=0pt}   % 紧凑列表
+\usepackage{multirow}      % 跨行合并
+% ------------------------------
+
+% ---------- 插入图片 ----------
+\usepackage{graphicx}       % 插图支持
+% -----------------------------
+
+% ---------- 代码环境 ----------
+\usepackage{listings}       % 代码高亮
+\lstset{
+    backgroundcolor=\color{codebg}, % 背景色
+    basicstyle=\ttfamily\small\color{code}, % 基本代码样式
+    keywordstyle=\color{codekeys}, % 关键词颜色
+    commentstyle=\color{codecom}, % 注释颜色
+    numbers=left, % 行号位置
+    numberstyle=\tiny\color{gray}, % 行号样式
+    breaklines=true, % 自动换行
+    frame=single, % 单线框
+    captionpos=b, % 标题位置
+    showstringspaces=false, % 不显示字符串中的空格
+    extendedchars=false, % 支持中文
+    literate= % 处理中文显示
+        {LaTeX}{{\LaTeX}}2
+        {TeX}{{\TeX}}2
+}
+% -----------------------------
+
+% ---------- 定理、定义环境 ----------
+\usepackage{tcolorbox}
+
+\tcbuselibrary{theorems,skins} % 引入定理和皮肤库
+% 定理环境模板
+% \definecolor{myblue}{RGB}{0,100,200}
+% \definecolor{theorembg}{RGB}{245,245,255}
+% \newtcbtheorem[number within=section]{theorem}{定理}{ 
+%     % number within=section编号
+%     % no counter无编号
+%     enhanced, % 启用增强功能
+%     colback=theorembg, % 背景色
+%     colframe=myblue, % 边框色
+%     fonttitle=\bfseries, % 标题字体加粗
+%     drop fuzzy shadow % 阴影效果
+% }{thm}
+
+% \newtcbtheorem[number within=section]{definition}{定义}{
+%     enhanced,                    % 启用高级功能
+%     colback=gray!5,             % 背景色：极浅灰
+%     colframe=gray!30,           % 边框色：浅灰
+%     boxrule=0pt,                % 外边框宽度为0（只留左边框）
+%     leftrule=3pt,               % 左边框宽度（绿色竖线效果）
+%     sharp corners,              % 直角（或改为 rounded corners 圆角）
+%     fonttitle=\bfseries\sffamily\color{black},  % 标题字体
+%     coltitle=black,             % 标题颜色
+%     attach title to upper,       % ★ 标题连接到内容上方（行内）
+%     separator sign={.},         % 标题与内容分隔符
+%     after title={\ },     % 标题后添加空格
+%     description delimiters parenthesis,  % 描述文字用括号
+%     drop fuzzy shadow             % 模糊阴影效果
+% }{def}
+
+
+% 定义 --- 绿
+\newtcbtheorem[number within=section]{dy}{定义}{ 
+    enhanced, 
+    colback=math-bg-green,
+    colframe=math-bd-green,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{def}
+% 定理、引理 --- 蓝
+\newtcbtheorem[number within=section]{dl}{定理}{ 
+    enhanced, 
+    colback=math-bg-blue,
+    colframe=math-bd-blue,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{thm}
+% 例题、例子 --- 紫
+\newtcbtheorem[number within=section]{lz}{例}{ 
+    enhanced, 
+    colback=math-bg-violet,
+    colframe=math-bd-violet,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{tip}
+% 练习、作业 --- 青
+\newtcbtheorem[number within=section]{lx}{练习}{ 
+    enhanced, 
+    colback=math-bg-aoi,
+    colframe=math-bd-aoi,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{exer}
+% --- 红
+\newtcbtheorem[number within=section]{cw}{错误}{ 
+    enhanced, 
+    colback=math-bg-red,
+    colframe=math-bd-red,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{warn}
+% 提示、注意 --- 橙黄
+\newtcbtheorem[number within=section]{ts}{提示}{ 
+    enhanced, 
+    colback=math-bg-orrange,
+    colframe=math-bd-orrange,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{tip}
+% ----------------------------------
+
+% ---------- 练习与答案环境 ----------
+\usepackage{comment}
+% 答案显示控制
+\newif\ifshowanswers
+\showanswerstrue
+% 显示答案：\showanswerstrue
+% 隐藏答案：\showanswersfalse
+\ifshowanswers
+    \newenvironment{solution}
+        {\par\smallskip{\color{red}\bfseries 【解析】解：}}
+        {\par\smallskip{\color{red}\bfseries 【解析】解：}} % 解答标题
+        {\par\smallskip} % 解答结束
+\else
+    \excludecomment{solution} 
+\fi
+% 自定义练习环境
+\newcounter{exercise}[section]
+\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
+\newenvironment{exercise}
+    {\par\vspace{0.3cm}\refstepcounter{exercise}
+     \noindent\textbf{练习 \theexercise}\quad}
+    {\par\vspace{0.2cm}}
+% ----------------------------------
+
+% ---------- 分栏 ----------
+\usepackage{multicol} % 支持多栏
+% -------------------------
+
+% ---------- 公式快捷命令 ----------
+
+% --------------------------------
+
+
+
+
+
+% ctexbook放在前面会导致章节编号问题，ctexart放在前面则没有问题
+\title{LaTeX 数学笔记模板} 
+\author{RUINA}
+\date{2026年2月12日}
+% ---------- 正文 ----------
+\begin{document}
+% \frontmatter % 前置部分 (ctexart不支持)
+\maketitle
+\newpage
+\tableofcontents % 目录
+\newpage
+% \mainmatter % 正文部分 (ctexart不支持)
+\section{普通文本}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\newline
+Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+Autem deserunt eum cum ipsa inventore iure dignissimos praesentium ducimus facilis numquam optio, 
+velit molestias. Quod nobis dolor quos itaque, cupiditate cumque!
+\subsection{test}
+\subsubsection{test1}
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\newline
+Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+Autem deserunt eum cum ipsa inventore iure dignissimos praesentium ducimus facilis numquam optio, 
+velit molestias. Quod nobis dolor quos itaque, cupiditate cumque!
+\end{lstlisting}
+
+
+
+\newpage
+\section{表格}
+三线表
+\begin{table}[htbp] % htbp用于定位
+    \caption{表格演示}
+    \centering %剧中
+    \begin{tabular}{lccc}
+        \toprule
+        表头&列1&列2&列3 \\ % \\换行 &换列
+        \midrule
+        行1&text11&text12&text13 \\
+        行2&text21&text22&text23 \\ 
+        \bottomrule
+    \end{tabular}        
+\end{table}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        1&2&3 \\ \hline
+        4&5&6 \\ \hline
+        7&8&9 \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        1&2&3 \\ \hline
+        \multicolumn{2}{|c|}{4} &5 \\ \hline
+        6& \multicolumn{2}{|c|}{7} \\ \hline
+        \multicolumn{3}{|c|}{8} \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|l|c|c|c|}
+        \toprule
+        % 横向合并示例：表头跨3列
+        \multicolumn{1}{c}{表头} & \multicolumn{3}{c}{合并的3列标题} \\
+        \cmidrule(lr){2-4}  % 在第2-4列画横线
+        表头 & 列1 & 列2 & 列3 \\
+        \midrule
+        
+        % 纵向合并示例：行1-行2 的第一列合并
+        \multirow{2}{*}{合并行} & text11 & text12 & text13 \\
+                                & text21 & text22 & text23 \\
+        
+        \midrule
+        
+        % 横向+纵向同时合并的复杂示例
+        \multirow{2}{*}{复杂合并} & \multicolumn{2}{c}{横向合并两列} & text13 \\
+        \cmidrule(lr){2-3}
+                                  & text21 & text22 & text23 \\
+        
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{table}[htbp] % htbp用于定位
+        \caption{表格演示}
+        \centering %剧中
+        \begin{tabular}{lccc}
+            \toprule
+            表头&列1&列2&列3 \\ % \\换行 &换列
+            \midrule
+            行1&text11&text12&text13 \\
+            行2&text21&text22&text23 \\ 
+            \bottomrule
+        \end{tabular}        
+    \end{table}
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            1&2&3 \\ \hline
+            4&5&6 \\ \hline
+            7&8&9 \\ \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            1&2&3 \\ \hline
+            \multicolumn{2}{|c|}{4} &5 \\ \hline
+            6& \multicolumn{2}{|c|}{7} \\ \hline
+            \multicolumn{3}{|c|}{8} \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{tabular}{|l|c|c|c|}
+        \toprule
+        % 横向合并示例：表头跨3列
+        \multicolumn{1}{c}{表头} & \multicolumn{3}{c}{合并的3列标题} \\
+        \cmidrule(lr){2-4}  % 在第2-4列画横线
+        表头 & 列1 & 列2 & 列3 \\
+        \midrule
+        
+        % 纵向合并示例：行1-行2 的第一列合并
+        \multirow{2}{*}{合并行} & text11 & text12 & text13 \\
+                                & text21 & text22 & text23 \\
+        
+        \midrule
+        
+        % 横向+纵向同时合并的复杂示例
+        \multirow{2}{*}{复杂合并} & \multicolumn{2}{c}{横向合并两列} & text13 \\
+        \cmidrule(lr){2-3}
+                                  & text21 & text22 & text23 \\
+        
+        \bottomrule
+    \end{tabular}
+
+
+\end{lstlisting}
+
+
+\newpage
+\section{图片}
+\begin{center}
+    % 测试图片过大所以调整大小
+    \includegraphics[scale=0.2]{../img/测试用JPG.jpg}
+    \includegraphics[scale=0.2]{../img/测试用PNG.png}      
+\end{center}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{center}
+        % 测试图片过大所以调整大小
+        \includegraphics[scale=0.2]{../img/测试用JPG.jpg}
+        \includegraphics[scale=0.2]{../img/测试用PNG.png}        
+    \end{center}
+\end{lstlisting}
+
+
+
+\newpage
+\section{列表}
+    \begin{itemize}
+        \item 战争
+        \item 疾病
+        \item 命运
+        \item 死亡
+    \end{itemize}
+
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+    \begin{itemize}
+        \item test1
+        \begin{itemize}
+            \item 123
+            \item 345
+        \end{itemize}
+        \item test2
+    \end{itemize}
+    
+    文字分割
+
+    \begin{enumerate}
+        \item kaiser
+        \item number
+        \item lucy
+    \end{enumerate}
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{itemize}
+        \item 战争
+        \item 疾病
+        \item 命运
+        \item 死亡
+    \end{itemize}
+
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+    \begin{itemize}
+        \item test1
+        \begin{itemize}
+            \item 123
+            \item 345
+        \end{itemize}
+        \item test2
+    \end{itemize}
+    
+    文字分割
+
+    \begin{enumerate}
+        \item kaiser
+        \item number
+        \item lucy
+    \end{enumerate}
+\end{lstlisting}
+
+\newpage
+\section{代码}
+% 旧版
+\begin{verbatim}
+test = {"lily":18,"lucy":19,"luck":20}
+
+for key in test.keys():
+    print(key)
+    print(test[key])
+
+for value in test.values():
+    print(value)
+
+for k,v in test.items():
+    print(k,v)
+\end{verbatim}
+
+% 引入listings包
+\begin{lstlisting}[language=python]
+    test = {"lily":18,"lucy":19,"luck":20}
+
+    for key in test.keys():
+        print(key)
+        print(test[key])
+
+    for value in test.values():
+        print(value)
+
+    for k,v in test.items():
+        print(k,v)
+\end{lstlisting}
+
+\newpage
+\section{定理、定义等*}
+%     定理类型1
+%     \begin{theorem}{定理测试} 
+%         这是一个测试文本
+%     \end{theorem}
+
+% \begin{lstlisting}[language={[LaTeX]TeX}]
+%     定理类型1
+%     \begin{theorem}{定理测试} 
+%         这是一个测试文本
+%     \end{theorem}
+% \end{lstlisting}
+    \begin{dy}{测试}
+    :这是一个测试定义
+    \end{dy}
+    \begin{dl}{}
+    :这是一个测试定理
+    \end{dl}
+    \begin{lz}{}
+    :这是一个测试例子
+    \end{lz}
+    \begin{ts}{}
+    :这是一个测试提示
+    \end{ts}
+    \begin{cw}{}
+    :这是一个测试错误
+    \end{cw}
+    \begin{lx}{}
+    :这是一个测试练习
+    \end{lx}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    % 在环境内容开始前加一个字符就正常显示，不然会吞掉一个字符
+    \begin{dy}{测试}
+    :这是一个测试定义
+    \end{dy}
+    \begin{dl}{}
+    :这是一个测试定理
+    \end{dl}
+    \begin{lz}{}
+    :这是一个测试例子
+    \end{lz}
+    \begin{ts}{}
+    :这是一个测试提示
+    \end{ts}
+    \begin{cw}{}
+    :这是一个测试错误
+    \end{cw}
+    \begin{lx}{}
+    :这是一个测试练习
+    \end{lx}
+\end{lstlisting}
+\newpage
+\section{公式*}
+%行内
+$ a_n \neq 0 $
+%段落
+\[
+f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
+\]
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    %行内
+    $ a_n \neq 0 $
+    %段落
+    \[
+    f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
+    \]
+\end{lstlisting}
+
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    公式 & 代码 & 公式 & 代码 \\
+    \hline
+    $a_{b}$ & \verb|a_{b}| & $a^{b}$ & \verb|a^{b}| \\
+    \hline
+    $f'(x)$ & \verb|f'(x)| & $a_{b}^{c}$ & \verb|a_{b}^{c}| \\
+    \hline
+    $5/8,\frac{5}{8}$ & \verb|5/8,\frac{5}{8}| & $\sqrt[3]{2}$ & \verb|\sqrt[3]{2}| \\
+    \hline   
+\end{tabular}
+
+
+
+
+
+
+\newpage
+\section{练习与解答*}
+演示：
+\begin{exercise}
+    求极限 $\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}$.
+\end{exercise}
+\begin{solution}
+    利用重要极限，$\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}=3\lim_{x\to 0}\frac{\sin 3x}{3x}=3\times 1=3$.
+\end{solution}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{exercise}
+        求极限 $\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}$.
+    \end{exercise}
+    \begin{solution}
+        利用重要极限，$\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}=3\lim_{x\to 0}\frac{\sin 3x}{3x}=3\times 1=3$.
+    \end{solution}
+\end{lstlisting}
+
+
+
+
+
+\newpage
+\section{分栏}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\setlength{\columnseprule}{0.4pt}  % 栏间加竖线
+\begin{multicols}{3}
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{multicols}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\setlength{\columnseprule}{0.4pt}  % 栏间加竖线
+\begin{multicols}{3}
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{multicols}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{lstlisting}
+
+
+
+\newpage
+\section{绘图}
+暂未学会，待补充
+
+\newpage
+\appendix % 附录
+\section{颜色}
+\begin{table}[htbp]
+    \centering
+    \caption{颜色模式比较}
+    \begin{tabular}{l|ccc}
+        \toprule
+        模式 & 语法 & 用途 & 取值范围 \\
+        \midrule
+        Named & \verb|\color{red}| & 简单快速 & 预定义名称 \\
+        RGB & \verb|\color[RGB]{255,0,0}| & 屏幕显示 & 0-255 \\
+        rgb & \verb|\color[rgb]{1,0,0}| & 屏幕显示 & 0-1 \\
+        HTML & \verb|\color[HTML]{FF0000}| & Web/设计 & \#RRGGBB \\
+        CMYK & \verb|\color[cmyk]{0,1,1,0}| & 印刷 & 0-1 \\
+        HSB & \verb|\color[hsb]{0,1,1}| & 色彩调整 & 0-1 \\
+        Gray & \verb|\color[gray]{0.5}| & 灰度 & 0-1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+% \backmatter % 后置部分 (ctexart不支持)
+
+\end{document}

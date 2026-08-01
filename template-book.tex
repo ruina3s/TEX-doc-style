@@ -1,0 +1,46 @@
+\documentclass{ctexbook}
+% ctexbook适合长文档：chapter、section、subsection、subsubsection
+
+\usepackage{R3S-tex-doc}
+
+% ----- 控制答案和解析是否显示 -----
+% \shouanswerfalse          % 默认显示答案，不显示就取消行首注释
+% \shouexplanationsfalse    % 默认显示解析，不显示就取消行首注释
+% ----------------------------------------
+
+\begin{document}
+\frontmatter                % 前言部分 
+\title{}                    % 标题
+\author{}                   % 作者
+\date{}                     % 日期
+\maketitle                  % 生成标题页（前面三项设置会体现出来）
+\tableofcontents            % 生成目录页（会自动包含章节、小节、子小节等信息）
+\mainmatter                 % 主要内容部分（使用模板真正需要书写的内容）
+
+% ----- 书写内容解构示例 -----
+% \chapter{第1章}
+%   \section{第1章-1节}
+%       \subsection{第1章-1节-1小节}    
+%           \subsubsection{第1章-1节-1小节-1小小节}
+%           \subsubsection{第1章-1节-1小节-2小小节}
+%           \subsubsection{第1章-1节-1小节-3小小节}
+%       \subsection{第1章-1节-2小节}
+%       \subsection{第1章-1节-3小节}
+%   \section{第1章-2节}
+%   \section{第1章-3节}
+% \end{chapter}
+% \chapter{第2章}
+%   \section{第2章-1节}
+%       \subsection{第2章-1节-1小节}
+%       \subsubsection{第2章-1节-1小节-1小小节} 
+% \end{chapter}
+% \chapter{第3章}
+%   \section{第3章-1节}
+%       \subsection{第3章-1节-1小节}
+%       \subsubsection{第3章-1节-1小节-1小小节} 
+% \end{chapter}
+% ----------------------------------------
+
+\appendix                   % 附录部分
+\backmatter                 % 后记
+\end{document}

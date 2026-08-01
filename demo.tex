@@ -1,0 +1,446 @@
+\documentclass{ctexart} 
+% ctexbook  适合长文档：chapter、section、subsection、subsubsection
+% ctexart   适合短文档：section、subsection、subsubsection
+
+\usepackage{R3S-tex-doc}
+
+\showanswerstrue
+\showexplanationsfalse
+% ctexbook放在前面会导致章节编号问题，ctexart放在前面则没有问题
+\title{LaTeX 数学笔记模板} 
+\author{RUINA}
+\date{2026年8月1日}
+% ---------- 正文 ----------
+\begin{document}
+% \frontmatter % 前置部分 (ctexart不支持)
+\maketitle
+\newpage
+\tableofcontents % 目录
+\newpage
+% \mainmatter % 正文部分 (ctexart不支持)
+\section{普通文本}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\newline
+Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+Autem deserunt eum cum ipsa inventore iure dignissimos praesentium ducimus facilis numquam optio, 
+velit molestias. Quod nobis dolor quos itaque, cupiditate cumque!
+\subsection{test}
+\subsubsection{test1}
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\newline
+Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+Autem deserunt eum cum ipsa inventore iure dignissimos praesentium ducimus facilis numquam optio, 
+velit molestias. Quod nobis dolor quos itaque, cupiditate cumque!
+\end{lstlisting}
+
+
+
+\newpage
+\section{表格}
+三线表
+\begin{table}[htbp] % htbp用于定位
+    \caption{表格演示}
+    \centering %剧中
+    \begin{tabular}{lccc}
+        \toprule
+        表头&列1&列2&列3 \\ % \\换行 &换列
+        \midrule
+        行1&text11&text12&text13 \\
+        行2&text21&text22&text23 \\ 
+        \bottomrule
+    \end{tabular}        
+\end{table}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        1&2&3 \\ \hline
+        4&5&6 \\ \hline
+        7&8&9 \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        1&2&3 \\ \hline
+        \multicolumn{2}{|c|}{4} &5 \\ \hline
+        6& \multicolumn{2}{|c|}{7} \\ \hline
+        \multicolumn{3}{|c|}{8} \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|l|c|c|c|}
+        \toprule
+        % 横向合并示例：表头跨3列
+        \multicolumn{1}{c}{表头} & \multicolumn{3}{c}{合并的3列标题} \\
+        \cmidrule(lr){2-4}  % 在第2-4列画横线
+        表头 & 列1 & 列2 & 列3 \\
+        \midrule
+        
+        % 纵向合并示例：行1-行2 的第一列合并
+        \multirow{2}{*}{合并行} & text11 & text12 & text13 \\
+                                & text21 & text22 & text23 \\
+        
+        \midrule
+        
+        % 横向+纵向同时合并的复杂示例
+        \multirow{2}{*}{复杂合并} & \multicolumn{2}{c}{横向合并两列} & text13 \\
+        \cmidrule(lr){2-3}
+                                  & text21 & text22 & text23 \\
+        
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{table}[htbp] % htbp用于定位
+        \caption{表格演示}
+        \centering %剧中
+        \begin{tabular}{lccc}
+            \toprule
+            表头&列1&列2&列3 \\ % \\换行 &换列
+            \midrule
+            行1&text11&text12&text13 \\
+            行2&text21&text22&text23 \\ 
+            \bottomrule
+        \end{tabular}        
+    \end{table}
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            1&2&3 \\ \hline
+            4&5&6 \\ \hline
+            7&8&9 \\ \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            1&2&3 \\ \hline
+            \multicolumn{2}{|c|}{4} &5 \\ \hline
+            6& \multicolumn{2}{|c|}{7} \\ \hline
+            \multicolumn{3}{|c|}{8} \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{tabular}{|l|c|c|c|}
+        \toprule
+        % 横向合并示例：表头跨3列
+        \multicolumn{1}{c}{表头} & \multicolumn{3}{c}{合并的3列标题} \\
+        \cmidrule(lr){2-4}  % 在第2-4列画横线
+        表头 & 列1 & 列2 & 列3 \\
+        \midrule
+        
+        % 纵向合并示例：行1-行2 的第一列合并
+        \multirow{2}{*}{合并行} & text11 & text12 & text13 \\
+                                & text21 & text22 & text23 \\
+        
+        \midrule
+        
+        % 横向+纵向同时合并的复杂示例
+        \multirow{2}{*}{复杂合并} & \multicolumn{2}{c}{横向合并两列} & text13 \\
+        \cmidrule(lr){2-3}
+                                  & text21 & text22 & text23 \\
+        
+        \bottomrule
+    \end{tabular}
+
+
+\end{lstlisting}
+
+
+\newpage
+\section{图片}
+\begin{center}
+    % 测试图片过大所以调整大小
+    \includegraphics[scale=0.2]{img/测试用JPG.jpg}
+    \includegraphics[scale=0.2]{img/测试用PNG.png}      
+\end{center}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{center}
+        % 测试图片过大所以调整大小
+        \includegraphics[scale=0.2]{img/测试用JPG.jpg}
+        \includegraphics[scale=0.2]{img/测试用PNG.png}        
+    \end{center}
+\end{lstlisting}
+
+
+
+\newpage
+\section{列表}
+    \begin{itemize}
+        \item 战争
+        \item 疾病
+        \item 命运
+        \item 死亡
+    \end{itemize}
+
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+    \begin{itemize}
+        \item test1
+        \begin{itemize}
+            \item 123
+            \item 345
+        \end{itemize}
+        \item test2
+    \end{itemize}
+    
+    文字分割
+
+    \begin{enumerate}
+        \item kaiser
+        \item number
+        \item lucy
+    \end{enumerate}
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{itemize}
+        \item 战争
+        \item 疾病
+        \item 命运
+        \item 死亡
+    \end{itemize}
+
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+    \begin{itemize}
+        \item test1
+        \begin{itemize}
+            \item 123
+            \item 345
+        \end{itemize}
+        \item test2
+    \end{itemize}
+    
+    文字分割
+
+    \begin{enumerate}
+        \item kaiser
+        \item number
+        \item lucy
+    \end{enumerate}
+\end{lstlisting}
+
+\newpage
+\section{代码}
+% 旧版
+\begin{verbatim}
+test = {"lily":18,"lucy":19,"luck":20}
+
+for key in test.keys():
+    print(key)
+    print(test[key])
+
+for value in test.values():
+    print(value)
+
+for k,v in test.items():
+    print(k,v)
+\end{verbatim}
+
+% 引入listings包
+\begin{lstlisting}[language=python]
+    test = {"lily":18,"lucy":19,"luck":20}
+
+    for key in test.keys():
+        print(key)
+        print(test[key])
+
+    for value in test.values():
+        print(value)
+
+    for k,v in test.items():
+        print(k,v)
+\end{lstlisting}
+
+\newpage
+\section{定理、定义等*}
+%     定理类型1
+%     \begin{theorem}{定理测试} 
+%         这是一个测试文本
+%     \end{theorem}
+
+% \begin{lstlisting}[language={[LaTeX]TeX}]
+%     定理类型1
+%     \begin{theorem}{定理测试} 
+%         这是一个测试文本
+%     \end{theorem}
+% \end{lstlisting}
+    \begin{dy}{测试}
+    :这是一个测试定义
+    \end{dy}
+    \begin{dl}{}
+    :这是一个测试定理
+    \end{dl}
+    \begin{lz}{}
+    :这是一个测试例子
+    \end{lz}
+    \begin{ts}{}
+    :这是一个测试提示
+    \end{ts}
+    \begin{cw}{}
+    :这是一个测试错误
+    \end{cw}
+    \begin{lx}{}
+    :这是一个测试练习
+    \end{lx}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    % 在环境内容开始前加一个字符就正常显示，不然会吞掉一个字符
+    \begin{dy}{测试}
+    :这是一个测试定义
+    \end{dy}
+    \begin{dl}{}
+    :这是一个测试定理
+    \end{dl}
+    \begin{lz}{}
+    :这是一个测试例子
+    \end{lz}
+    \begin{ts}{}
+    :这是一个测试提示
+    \end{ts}
+    \begin{cw}{}
+    :这是一个测试错误
+    \end{cw}
+    \begin{lx}{}
+    :这是一个测试练习
+    \end{lx}
+\end{lstlisting}
+\newpage
+\section{公式*}
+%行内
+$ a_n \neq 0 $
+%段落
+\[
+f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
+\]
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    %行内
+    $ a_n \neq 0 $
+    %段落
+    \[
+    f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
+    \]
+\end{lstlisting}
+
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    公式 & 代码 & 公式 & 代码 \\
+    \hline
+    $a_{b}$ & \verb|a_{b}| & $a^{b}$ & \verb|a^{b}| \\
+    \hline
+    $f'(x)$ & \verb|f'(x)| & $a_{b}^{c}$ & \verb|a_{b}^{c}| \\
+    \hline
+    $5/8,\frac{5}{8}$ & \verb|5/8,\frac{5}{8}| & $\sqrt[3]{2}$ & \verb|\sqrt[3]{2}| \\
+    \hline   
+\end{tabular}
+
+
+
+
+
+
+\newpage
+\section{练习与解答*}
+演示：
+\begin{exercise}
+    求极限 $\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}$.
+\end{exercise}
+\begin{answer}
+    3
+\end{answer}
+\begin{explanation}
+    利用重要极限，$\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}=3\lim_{x\to 0}\frac{\sin 3x}{3x}=3\times 1=3$.
+\end{explanation}
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    \begin{exercise}
+        求极限 $\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}$.
+    \end{exercise}
+    \begin{answer}
+        3
+    \end{answer}
+    \begin{explanation}
+        利用重要极限，$\displaystyle \lim_{x\to 0} \frac{\sin 3x}{x}=3\lim_{x\to 0}\frac{\sin 3x}{3x}=3\times 1=3$.
+    \end{explanation}
+\end{lstlisting}
+
+
+
+
+
+\newpage
+\section{分栏}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\setlength{\columnseprule}{0.4pt}  % 栏间加竖线
+\begin{multicols}{3}
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{multicols}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+
+
+\begin{lstlisting}[language={[LaTeX]TeX}]
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\setlength{\columnseprule}{0.4pt}  % 栏间加竖线
+\begin{multicols}{3}
+    当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{multicols}
+当第连的里大郭平屯杨略丑求清送事，句杀燕入本火土不陈云必大而不后司，亲召是疾反秦，
+皇派真你斯无一不救杨侯反的同，土希把正尝不往而忧你作使马也的种，了长在但，光九非间洪松冒自君朗逃尘得谋头位，
+入书尚办不的心回君到，于上葬极仅认不老苟作十下无说赏禀，不恨若韩。
+\end{lstlisting}
+
+
+
+\newpage
+\section{绘图}
+暂未学会，待补充
+
+\newpage
+\appendix % 附录
+\section{颜色}
+\begin{table}[htbp]
+    \centering
+    \caption{颜色模式比较}
+    \begin{tabular}{l|ccc}
+        \toprule
+        模式 & 语法 & 用途 & 取值范围 \\
+        \midrule
+        Named & \verb|\color{red}| & 简单快速 & 预定义名称 \\
+        RGB & \verb|\color[RGB]{255,0,0}| & 屏幕显示 & 0-255 \\
+        rgb & \verb|\color[rgb]{1,0,0}| & 屏幕显示 & 0-1 \\
+        HTML & \verb|\color[HTML]{FF0000}| & Web/设计 & \#RRGGBB \\
+        CMYK & \verb|\color[cmyk]{0,1,1,0}| & 印刷 & 0-1 \\
+        HSB & \verb|\color[hsb]{0,1,1}| & 色彩调整 & 0-1 \\
+        Gray & \verb|\color[gray]{0.5}| & 灰度 & 0-1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+% \backmatter % 后置部分 (ctexart不支持)
+
+\end{document}

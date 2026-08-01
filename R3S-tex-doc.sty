@@ -1,0 +1,290 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mysettings}[2026/08/01 v1.0 Custom Settings]
+
+% ---------- 导言区字体配置 ----------
+% 1. ctex 宏包（自动加载 fandol）
+\RequirePackage[UTF8,fontset=fandol]{ctex}
+\setCJKmainfont{SimSun}[
+    BoldFont={SimSun},%          粗体仍使用宋体字形
+    BoldFeatures={FakeBold=3},%  以 FakeBold 模拟加粗，实现“宋体粗体”
+]
+\setCJKsansfont{KaiTi}
+\setCJKmonofont{FangSong}
+% 2. 西文字体：Computer Modern Unicode
+\RequirePackage{fontspec}
+\setmainfont{cmun}[
+    Extension = .otf,
+    UprightFont = *rm,
+    ItalicFont = *ti,
+    SlantedFont = *sl,
+    BoldFont = *bx,
+    BoldItalicFont = *bi,
+    BoldSlantedFont = *bl,
+]
+\setsansfont{cmun}[
+    Extension = .otf,
+    UprightFont = *ss,
+    ItalicFont = *si,
+    BoldFont = *sx,
+    BoldItalicFont = *so,
+]
+\setmonofont{cmun}[
+    Extension = .otf,
+    UprightFont = *btl,
+    ItalicFont = *bto,
+    BoldFont = *tb,
+    BoldItalicFont = *tx,
+]
+% 3. 数学字体（unicode-math 方案）
+\RequirePackage{amsmath}
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
+% --------------------------------
+
+% ---------- 页面设置 ----------
+\RequirePackage{geometry} % 页面设置
+\geometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm} % 页边距
+% ----------------------------
+
+% ---------- 链接 ----------
+\RequirePackage{hyperref} % 超链接支持
+\hypersetup{
+    colorlinks=true, % 启用彩色链接
+    linkcolor=red, % 目录链接颜色
+}
+% -------------------------
+
+% ---------- 颜色 ----------
+\RequirePackage{xcolor}
+% code 
+\definecolor{codebg}{RGB}{31,31,31} % 代码背景色
+\definecolor{code}{RGB}{204,204,204} % 代码基本颜色
+\definecolor{codecom}{RGB}{73,222,76} % 代码注释颜色
+\definecolor{codekeys}{RGB}{50,201,255} % 代码关键词颜色
+% math
+\definecolor{math-bd-blue}{HTML}{2196f3} % 数学边框蓝色
+\definecolor{math-bg-blue}{HTML}{e3f2fd} % 数学背景蓝色
+\definecolor{math-bd-green}{HTML}{4caf50} % 数学边框绿色
+\definecolor{math-bg-green}{HTML}{e8f5e9} % 数学背景绿色
+\definecolor{math-bd-orrange}{HTML}{ff9800} % 数学边框橙色
+\definecolor{math-bg-orrange}{HTML}{fff3e0} % 数学背景橙色
+\definecolor{math-bd-red}{HTML}{f44336} % 数学边框红色
+\definecolor{math-bg-red}{HTML}{ffebee} % 数学背景红色
+\definecolor{math-bd-violet}{HTML}{9c27b0} % 数学边框紫色
+\definecolor{math-bg-violet}{HTML}{f3e5f5} % 数学背景紫色
+\definecolor{math-bd-aoi}{HTML}{00bcd4} % 数学边框青色
+\definecolor{math-bg-aoi}{HTML}{e0f7fa} % 数学背景青色
+% -------------------------
+
+% ---------- 表格与列表 ----------
+\RequirePackage{booktabs}       % 三线表
+\RequirePackage{tabularx}       % 自适应列宽
+\RequirePackage{enumitem}       % 列表定制
+\setlist{nosep, left=0pt}   % 紧凑列表
+\RequirePackage{multirow}      % 跨行合并
+% ------------------------------
+
+% ---------- 插入图片 ----------
+\RequirePackage{graphicx}       % 插图支持
+% -----------------------------
+
+% ---------- 代码环境 ----------
+\RequirePackage{listings}       % 代码高亮
+\lstset{
+    backgroundcolor=\color{codebg}, % 背景色
+    basicstyle=\ttfamily\small\color{code}, % 基本代码样式
+    keywordstyle=\color{codekeys}, % 关键词颜色
+    commentstyle=\color{codecom}, % 注释颜色
+    numbers=left, % 行号位置
+    numberstyle=\tiny\color{gray}, % 行号样式
+    breaklines=true, % 自动换行
+    frame=single, % 单线框
+    captionpos=b, % 标题位置
+    showstringspaces=false, % 不显示字符串中的空格
+    extendedchars=false, % 支持中文
+    literate= % 处理中文显示
+        {LaTeX}{{\LaTeX}}2
+        {TeX}{{\TeX}}2
+}
+% -----------------------------
+
+% ---------- 定理、定义环境 ----------
+\RequirePackage{tcolorbox}
+
+\tcbuselibrary{theorems,skins} % 引入定理和皮肤库
+% 定理环境模板
+% \definecolor{myblue}{RGB}{0,100,200}
+% \definecolor{theorembg}{RGB}{245,245,255}
+% \newtcbtheorem[number within=section]{theorem}{定理}{ 
+%     % number within=section编号
+%     % no counter无编号
+%     enhanced, % 启用增强功能
+%     colback=theorembg, % 背景色
+%     colframe=myblue, % 边框色
+%     fonttitle=\bfseries, % 标题字体加粗
+%     drop fuzzy shadow % 阴影效果
+% }{thm}
+
+% \newtcbtheorem[number within=section]{definition}{定义}{
+%     enhanced,                    % 启用高级功能
+%     colback=gray!5,             % 背景色：极浅灰
+%     colframe=gray!30,           % 边框色：浅灰
+%     boxrule=0pt,                % 外边框宽度为0（只留左边框）
+%     leftrule=3pt,               % 左边框宽度（绿色竖线效果）
+%     sharp corners,              % 直角（或改为 rounded corners 圆角）
+%     fonttitle=\bfseries\sffamily\color{black},  % 标题字体
+%     coltitle=black,             % 标题颜色
+%     attach title to upper,       % ★ 标题连接到内容上方（行内）
+%     separator sign={.},         % 标题与内容分隔符
+%     after title={\ },     % 标题后添加空格
+%     description delimiters parenthesis,  % 描述文字用括号
+%     drop fuzzy shadow             % 模糊阴影效果
+% }{def}
+
+
+% 定义 --- 绿
+\newtcbtheorem[number within=section]{dy}{定义}{ 
+    enhanced, 
+    colback=math-bg-green,
+    colframe=math-bd-green,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{def}
+% 定理、引理 --- 蓝
+\newtcbtheorem[number within=section]{dl}{定理}{ 
+    enhanced, 
+    colback=math-bg-blue,
+    colframe=math-bd-blue,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{thm}
+% 例题、例子 --- 紫
+\newtcbtheorem[number within=section]{lz}{例}{ 
+    enhanced, 
+    colback=math-bg-violet,
+    colframe=math-bd-violet,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{tip}
+% 练习、作业 --- 青
+\newtcbtheorem[number within=section]{lx}{练习}{ 
+    enhanced, 
+    colback=math-bg-aoi,
+    colframe=math-bd-aoi,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{exer}
+% --- 红
+\newtcbtheorem[number within=section]{cw}{错误}{ 
+    enhanced, 
+    colback=math-bg-red,
+    colframe=math-bd-red,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{warn}
+% 提示、注意 --- 橙黄
+\newtcbtheorem[number within=section]{ts}{提示}{ 
+    enhanced, 
+    colback=math-bg-orrange,
+    colframe=math-bd-orrange,
+    boxrule=0pt,
+    leftrule=3pt,
+    sharp corners,
+    fonttitle=\bfseries,
+    coltitle=black,
+    attach title to upper,
+    separator sign={.},
+    after title={\ },
+    description delimiters parenthesis,
+    drop fuzzy shadow
+}{tip}
+% ----------------------------------
+
+% ---------- 练习与答案环境 ----------
+\RequirePackage{comment}
+% 答案显示控制
+\newif\ifshowanswers
+\newif\ifshowexplanations
+\showanswerstrue
+\showexplanationstrue
+% 显示答案：\showanswerstrue
+% 隐藏答案：\showanswersfalse
+% 显示解析：\showexplanationstrue
+% 隐藏解析：\showexplanationsfalse
+
+% 延迟到文档开始时定义，这样主文件可以在 \usepackage 后改开关
+\AtBeginDocument{%
+    \ifshowanswers
+        \newenvironment{answer}
+            {\par\smallskip{\color{red}\bfseries 【答案】}} % 答案标题
+            {\par\smallskip} % 答案结束
+    \else
+        \excludecomment{answer} 
+    \fi
+    \ifshowexplanations
+        \newenvironment{explanation}
+            {\par\smallskip{\color{red}\bfseries 【解析】解：}} % 解答标题
+            {\par\smallskip} % 解答结束
+    \else
+        \excludecomment{explanation} 
+    \fi
+}
+% 自定义练习环境
+\newcounter{exercise}[section]
+\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
+\newenvironment{exercise}
+    {\par\vspace{0.3cm}\refstepcounter{exercise}
+     \noindent\textbf{练习 \theexercise}\quad}
+    {\par\vspace{0.2cm}}
+% ----------------------------------
+
+% ---------- 分栏 ----------
+\RequirePackage{multicol} % 支持多栏
+% -------------------------
+
+% ---------- 公式快捷命令 ----------
+
+% --------------------------------
+
+
+\endinput

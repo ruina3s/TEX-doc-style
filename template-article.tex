@@ -1,0 +1,41 @@
+\documentclass{ctexart}
+% ctexart   适合短文档：section、subsection、subsubsection
+
+\usepackage{R3S-tex-doc}
+
+% ----- 控制答案和解析是否显示 -----
+% \shouanswerfalse          % 默认显示答案，不显示就取消行首注释
+% \shouexplanationsfalse    % 默认显示解析，不显示就取消行首注释
+% ----------------------------------------
+
+\begin{document}
+\title{}                    % 标题
+\author{}                   % 作者
+\date{}                     % 日期                  
+\maketitle                  % 生成标题页（前面三项设置会体现出来）
+\newpage                    % 新起一页避免标题页后接着目录内容
+\tableofcontents            % 生成目录页（会自动包含章节、小节、子小节等信息）
+\newpage                    % 新起一页避免目录后直接跟着内容
+
+% ----- 书写内容解构示例 -----
+% \section{章节1}
+%   \subsection{小节1}
+%       \subsubsection{子小节1}
+%       \subsubsection{子小节1}
+%   \subsection{小节2}
+%       \subsubsection{子小节2}
+% \section{章节2}
+%   \subsection{小节3}
+%       \subsubsection{子小节3}
+%   \subsection{小节4}
+%       \subsubsection{子小节4}
+% \section{章节3}
+%   \subsection{小节5}
+%       \subsubsection{子小节5}
+%   \subsection{小节6}
+%       \subsubsection{子小节6}
+% ----------------------------------------
+
+\appendix                   % 附录部分
+
+\end{document}

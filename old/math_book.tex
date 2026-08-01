@@ -1,0 +1,81 @@
+\documentclass{ctexbook} 
+% ctexbook适合长文档：chapter、section、subsection、subsubsection
+
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{amsmath,amssymb,eucal,mathrsfs,booktabs,comment,enumitem,fontspec,geometry,graphicx,hyperref,listings,multicol,tabularx,tcolorbox,xcolor}
+\setCJKmainfont{FandolSong}
+\setCJKsansfont{FandolHei}
+\setCJKmonofont{FandolFang}
+\setmainfont{cmun}[Extension = .otf,UprightFont = *rm,ItalicFont = *ti,SlantedFont = *sl,BoldFont = *bx,BoldItalicFont = *bi,BoldSlantedFont = *bl,]
+\setsansfont{cmun}[Extension = .otf,UprightFont = *ss,ItalicFont = *si,BoldFont = *sx,BoldItalicFont = *so,]
+\setmonofont{cmun}[Extension = .otf,UprightFont = *btl,ItalicFont = *bto,BoldFont = *tb,BoldItalicFont = *tx,]
+\geometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm}
+\hypersetup{colorlinks=true,linkcolor=red,}
+\definecolor{codebg}{RGB}{31,31,31}
+\definecolor{code}{RGB}{204,204,204}
+\definecolor{codecom}{RGB}{73,222,76}
+\definecolor{codekeys}{RGB}{50,201,255}
+\definecolor{math-bd-blue}{HTML}{2196f3}
+\definecolor{math-bg-blue}{HTML}{e3f2fd}
+\definecolor{math-bd-green}{HTML}{4caf50}
+\definecolor{math-bg-green}{HTML}{e8f5e9}
+\definecolor{math-bd-orrange}{HTML}{ff9800}
+\definecolor{math-bg-orrange}{HTML}{fff3e0}
+\definecolor{math-bd-red}{HTML}{f44336}
+\definecolor{math-bg-red}{HTML}{ffebee}
+\definecolor{math-bd-violet}{HTML}{9c27b0}
+\definecolor{math-bg-violet}{HTML}{f3e5f5}
+\definecolor{math-bd-aoi}{HTML}{00bcd4}
+\definecolor{math-bg-aoi}{HTML}{e0f7fa}
+\setlist{nosep, left=0pt}
+\lstset{backgroundcolor=\color{codebg},basicstyle=\ttfamily\small\color{code},keywordstyle=\color{codekeys},commentstyle=\color{codecom},numbers=left,numberstyle=\tiny\color{gray},breaklines=true,frame=single,captionpos=b,showstringspaces=false,extendedchars=false,literate={LaTeX}{{\LaTeX}}2{TeX}{{\TeX}}2}
+\tcbuselibrary{theorems,skins}
+% 定义 --- 绿
+\newtcbtheorem[number within=section]{dy}{定义}{enhanced,colback=math-bg-green,colframe=math-bd-green,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{def}
+% 定理、引理 --- 蓝
+\newtcbtheorem[number within=section]{dl}{定理}{enhanced,colback=math-bg-blue,colframe=math-bd-blue,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{thm}
+% 例题、例子 --- 紫
+\newtcbtheorem[number within=section]{lz}{例}{enhanced,colback=math-bg-violet,colframe=math-bd-violet,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{tip}
+% 练习、作业 --- 青
+\newtcbtheorem[number within=section]{lx}{练习}{enhanced,colback=math-bg-aoi,colframe=math-bd-aoi,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{exer}
+% --- 红
+\newtcbtheorem[number within=section]{cw}{错误}{enhanced,colback=math-bg-red,colframe=math-bd-red,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{warn}
+% 提示、注意 --- 橙黄
+\newtcbtheorem[number within=section]{ts}{提示}{enhanced,colback=math-bg-orrange,colframe=math-bd-orrange,boxrule=0pt,leftrule=3pt,sharp corners,fonttitle=\bfseries,coltitle=black,attach title to upper,separator sign={.},after title={\ },description delimiters parenthesis,drop fuzzy shadow}{tip}
+\newif\ifshowanswers
+\showanswerstrue
+% 显示答案：\showanswerstrue
+% 隐藏答案：\showanswersfalse
+\ifshowanswers
+    \newenvironment{solution}
+        {\par\smallskip{\color{red}\bfseries 【解析】解：}}
+        {\par\smallskip{\color{red}\bfseries 【解析】解：}}
+        {\par\smallskip}
+\else
+    \excludecomment{solution} 
+\fi
+\newcounter{exercise}[section]
+\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
+\newenvironment{exercise}
+    {\par\vspace{0.3cm}\refstepcounter{exercise}
+     \noindent\textbf{练习 \theexercise}\quad}
+    {\par\vspace{0.2cm}}
+
+
+
+\begin{document}
+\frontmatter
+\title{标题} 
+\author{作者}
+\date{日期}
+\maketitle
+\tableofcontents
+\mainmatter
+
+
+
+\appendix % 附录部分
+
+\backmatter % 后记
+
+\end{document}
