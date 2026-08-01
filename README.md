@@ -126,6 +126,7 @@ TEX-doc-style
 ```
 
 4. 代码块
+
 本样式引入了listings包，用于代码块的展示。旧版的太简陋了，没有语法高亮、没有行号、没有背景。
 ```tex
     \begin{lstlisting}[language=python]
@@ -167,9 +168,11 @@ TEX-doc-style
 ```
 
 6. 数学公式
+
 这里就不演示了，使用tex就是为了数学公式！
 
 7. 练习环境
+
 定义了练习环境，用于展示数学练习。
 同时定义了答案环境和解释环境（默认两者都显示）。可单独在`.tex`文件中通过`\showanswerfalse`隐藏答案。`\showexplanationsfalse`隐藏解释。
 ```tex
