@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mysettings}[2026/08/01 v1.0 Custom Settings]
+\ProvidesPackage{R3S-tex-doc}[2026/08/01 v1.0 Custom Settings]
 
 % ---------- 导言区字体配置 ----------
 % 1. ctex 宏包（自动加载 fandol）
@@ -43,7 +43,7 @@
 
 % ---------- 页面设置 ----------
 \RequirePackage{geometry} % 页面设置
-\geometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm} % 页边距
+\geometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=2.0cm} % 页边距
 % ----------------------------
 
 % ---------- 链接 ----------
@@ -125,6 +125,10 @@
 %     drop fuzzy shadow % 阴影效果
 % }{thm}
 
+%
+%
+% number within=section表示随section编号，no counter表示无编号
+%
 % \newtcbtheorem[number within=section]{definition}{定义}{
 %     enhanced,                    % 启用高级功能
 %     colback=gray!5,             % 背景色：极浅灰
@@ -281,6 +285,28 @@
 % ---------- 分栏 ----------
 \RequirePackage{multicol} % 支持多栏
 % -------------------------
+
+% ---------- 目录分栏开关 ----------
+\newif\ifmulticoltoc
+\multicoltocfalse % 默认：目录不分栏
+% 目录分两栏：\multicoltoctrue
+% 目录不分栏：\multicoltocfalse
+% 在调用时也可以选择是否分栏
+\RequirePackage{etoolbox}
+
+% 仿照答案/解析环境：延迟到文档开始时再决定
+\AtBeginDocument{%
+    \ifmulticoltoc
+        \patchcmd{\tableofcontents}%
+            {\@starttoc{toc}}%
+            {\begin{multicols}{2}\@starttoc{toc}\end{multicols}}%
+            {}%
+            {\PackageWarning{R3S-tex-doc}{无法为目录启用分栏（patch 失败）}}%
+    \fi
+}
+% ----------------------------------
+
+
 
 % ---------- 公式快捷命令 ----------
 
