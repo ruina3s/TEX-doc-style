@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{R3S-tex-doc}[2026/08/01 v1.0 Custom Settings]
+% v1.5 
 
 % ---------- 导言区字体配置 ----------
 % 1. ctex 宏包（自动加载 fandol）
@@ -110,138 +111,61 @@
 
 % ---------- 定理、定义环境 ----------
 \RequirePackage{tcolorbox}
-
 \tcbuselibrary{theorems,skins} % 引入定理和皮肤库
-% 定理环境模板
-% \definecolor{myblue}{RGB}{0,100,200}
-% \definecolor{theorembg}{RGB}{245,245,255}
-% \newtcbtheorem[number within=section]{theorem}{定理}{ 
-%     % number within=section编号
-%     % no counter无编号
-%     enhanced, % 启用增强功能
-%     colback=theorembg, % 背景色
-%     colframe=myblue, % 边框色
-%     fonttitle=\bfseries, % 标题字体加粗
-%     drop fuzzy shadow % 阴影效果
-% }{thm}
 
-%
-%
-% number within=section表示随section编号，no counter表示无编号
-%
-% \newtcbtheorem[number within=section]{definition}{定义}{
-%     enhanced,                    % 启用高级功能
-%     colback=gray!5,             % 背景色：极浅灰
-%     colframe=gray!30,           % 边框色：浅灰
-%     boxrule=0pt,                % 外边框宽度为0（只留左边框）
-%     leftrule=3pt,               % 左边框宽度（绿色竖线效果）
-%     sharp corners,              % 直角（或改为 rounded corners 圆角）
-%     fonttitle=\bfseries\sffamily\color{black},  % 标题字体
-%     coltitle=black,             % 标题颜色
-%     attach title to upper,       % ★ 标题连接到内容上方（行内）
-%     separator sign={.},         % 标题与内容分隔符
-%     after title={\ },     % 标题后添加空格
-%     description delimiters parenthesis,  % 描述文字用括号
-%     drop fuzzy shadow             % 模糊阴影效果
-% }{def}
+% 编号开关：在主文件导言区（\usepackage 之后、\begin{document} 之前）设置
+% 随 section 自动编号：\thmwithsectiontrue
+% 全局不编号：        \thmwithsectionfalse
+\newif\ifthmwithsection
+\thmwithsectiontrue % 默认保持原有行为
 
+% 所有定理框共用的样式（#1=边框色，#2=背景色），外观与原来完全一致
+\tcbset{
+    mathbox/.style 2 args={
+        enhanced,                    % 启用高级功能
+        colframe=#1,                % 边框色
+        colback=#2,                 % 背景色
+        boxrule=0pt,                % 外边框宽度为0（只留左边框）
+        leftrule=3pt,               % 左边框宽度（竖线效果）
+        sharp corners,              % 直角
+        fonttitle=\bfseries,        % 标题字体加粗
+        coltitle=black,             % 标题颜色
+        attach title to upper,      % 标题连接到内容上方（行内）
+        separator sign={.},         % 标题与内容分隔符
+        after title={\ },           % 标题后添加空格
+        description delimiters parenthesis, % 描述文字用括号
+        drop fuzzy shadow           % 模糊阴影
+    }
+}
 
-% 定义 --- 绿
-\newtcbtheorem[number within=section]{dy}{定义}{ 
-    enhanced, 
-    colback=math-bg-green,
-    colframe=math-bd-green,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{def}
-% 定理、引理 --- 蓝
-\newtcbtheorem[number within=section]{dl}{定理}{ 
-    enhanced, 
-    colback=math-bg-blue,
-    colframe=math-bd-blue,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{thm}
-% 例题、例子 --- 紫
-\newtcbtheorem[number within=section]{lz}{例}{ 
-    enhanced, 
-    colback=math-bg-violet,
-    colframe=math-bd-violet,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{tip}
-% 练习、作业 --- 青
-\newtcbtheorem[number within=section]{lx}{练习}{ 
-    enhanced, 
-    colback=math-bg-aoi,
-    colframe=math-bd-aoi,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{exer}
-% --- 红
-\newtcbtheorem[number within=section]{cw}{错误}{ 
-    enhanced, 
-    colback=math-bg-red,
-    colframe=math-bd-red,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{warn}
-% 提示、注意 --- 橙黄
-\newtcbtheorem[number within=section]{ts}{提示}{ 
-    enhanced, 
-    colback=math-bg-orrange,
-    colframe=math-bd-orrange,
-    boxrule=0pt,
-    leftrule=3pt,
-    sharp corners,
-    fonttitle=\bfseries,
-    coltitle=black,
-    attach title to upper,
-    separator sign={.},
-    after title={\ },
-    description delimiters parenthesis,
-    drop fuzzy shadow
-}{tip}
+% 统一的环境定义命令
+% #1=环境名  #2=显示标题  #3=\label 前缀  #4=边框色  #5=背景色
+% 是否随 section 编号由 \ifthmwithsection 统一控制
+% [number within=section] 表示随 section 编号
+% [no counter] 表示全局编号
+\newcommand{\NewMathThm}[5]{%
+    \ifthmwithsection
+        \newtcbtheorem[number within=section]{#1}{#2}{mathbox={#4}{#5}}{#3}%
+    \else
+        \newtcbtheorem[no counter]{#1}{#2}{mathbox={#4}{#5}}{#3}%
+    \fi
+}
+% 始终不编号的变体（原来的“练习”lx 就是 no counter，用它保持原样）
+\newcommand{\NewMathThmUncounted}[5]{%
+    \newtcbtheorem[no counter]{#1}{#2}{mathbox={#4}{#5}}{#3}%
+}
+
+% 延迟到 \begin{document} 才定义环境，
+% 这样主文件可以在导言区改开关后再决定编号方式
+\AtBeginDocument{%
+    \NewMathThm{dy}{定义}{def}{math-bd-green}{math-bg-green}
+    \NewMathThm{dl}{定理}{thm}{math-bd-blue}{math-bg-blue}
+    \NewMathThm{lz}{例}{tip}{math-bd-violet}{math-bg-violet}
+    \NewMathThm{cw}{错误}{warn}{math-bd-red}{math-bg-red}
+    \NewMathThm{ts}{提示}{tip}{math-bd-orrange}{math-bg-orrange}
+    % 原来的 lx 使用 [no counter]，保持不编号
+    \NewMathThmUncounted{lx}{练习}{exer}{math-bd-aoi}{math-bg-aoi}
+}
 % ----------------------------------
 
 % ---------- 练习与答案环境 ----------

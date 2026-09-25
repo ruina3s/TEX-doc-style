@@ -4,10 +4,24 @@
 
 \usepackage{R3S-tex-doc}
 
-\multicoltoctrue   % 目录分两栏
-% \multicoltocfalse % 目录不分栏（默认）
+% ---------- 自定义设置 ----------
+% 目录分栏设置
+% \multicoltoctrue      % 目录分两栏
+% \multicoltocfalse     % 目录不分栏（默认）
+\multicoltoctrue
+% 颜色框自动编号设置
+% \thmwithsectiontrue   % 颜色框随 section 编号（默认）
+% \thmwithsectionfalse  % 颜色框全局编号
+\thmwithsectionfalse
+% 显示答案与解析设置
+% \showanswerstrue      % 显示答案（默认）
+% \showanswerfalse      % 不显示答案
+% \showexplanationstrue   % 显示解析（默认）
+% \showexplanationsfalse  % 不显示解析
 \showanswerstrue
 \showexplanationsfalse
+% ----------------------------
+
 % ctexbook放在前面会导致章节编号问题，ctexart放在前面则没有问题
 \title{LaTeX 数学笔记模板} 
 \author{RUINA}
@@ -458,3 +472,4 @@ f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
 % \backmatter % 后置部分 (ctexart不支持)
 
 \end{document}
+% ---------------------------- 结束
