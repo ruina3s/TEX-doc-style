@@ -3,10 +3,23 @@
 
 \usepackage{R3S-tex-doc}
 
-% ----- 控制答案和解析是否显示 -----
-% \shouanswerfalse          % 默认显示答案，不显示就取消行首注释
-% \shouexplanationsfalse    % 默认显示解析，不显示就取消行首注释
-% ----------------------------------------
+% ---------- 自定义设置 ----------
+% 目录分栏设置
+% \multicoltoctrue      % 目录分两栏
+% \multicoltocfalse     % 目录不分栏（默认）
+\multicoltoctrue
+% 颜色框自动编号设置
+% \thmwithsectiontrue   % 颜色框随 section 编号（默认）
+% \thmwithsectionfalse  % 颜色框全局编号
+\thmwithsectionfalse
+% 显示答案与解析设置
+% \showanswerstrue      % 显示答案（默认）
+% \showanswerfalse      % 不显示答案
+% \showexplanationstrue   % 显示解析（默认）
+% \showexplanationsfalse  % 不显示解析
+\showanswerstrue
+\showexplanationsfalse
+% ----------------------------
 
 \begin{document}
 \frontmatter                % 前言部分 
