@@ -40,6 +40,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \setmathfont{Latin Modern Math}
+\everymath{\displaystyle}
 % --------------------------------
 
 % ---------- 页面设置 ----------
@@ -75,6 +76,8 @@
 \definecolor{math-bg-violet}{HTML}{f3e5f5} % 数学背景紫色
 \definecolor{math-bd-aoi}{HTML}{00bcd4} % 数学边框青色
 \definecolor{math-bg-aoi}{HTML}{e0f7fa} % 数学背景青色
+\definecolor{bw-bd}{gray}{0.25}
+\definecolor{bw-bg}{gray}{0.93}
 % -------------------------
 
 % ---------- 表格与列表 ----------
@@ -155,16 +158,28 @@
     \newtcbtheorem[no counter]{#1}{#2}{mathbox={#4}{#5}}{#3}%
 }
 
+\newif\ifcolormode
+\colormodetrue % 默认彩色模式
 % 延迟到 \begin{document} 才定义环境，
 % 这样主文件可以在导言区改开关后再决定编号方式
 \AtBeginDocument{%
-    \NewMathThm{dy}{定义}{def}{math-bd-green}{math-bg-green}
-    \NewMathThm{dl}{定理}{thm}{math-bd-blue}{math-bg-blue}
-    \NewMathThm{lz}{例}{tip}{math-bd-violet}{math-bg-violet}
-    \NewMathThm{cw}{错误}{warn}{math-bd-red}{math-bg-red}
-    \NewMathThm{ts}{提示}{tip}{math-bd-orrange}{math-bg-orrange}
-    % 原来的 lx 使用 [no counter]，保持不编号
-    \NewMathThmUncounted{lx}{练习}{exer}{math-bd-aoi}{math-bg-aoi}
+    \ifcolormode
+        \NewMathThm{dfn}{定义}{dfn}{math-bd-green}{math-bg-green}
+        \NewMathThm{thm}{定理}{thm}{math-bd-blue}{math-bg-blue}
+        \NewMathThm{exm}{例}{exm}{math-bd-violet}{math-bg-violet}
+        \NewMathThm{warn}{错误}{warn}{math-bd-red}{math-bg-red}
+        \NewMathThm{tip}{提示}{tip}{math-bd-orrange}{math-bg-orrange}
+        % 原来的 lx 使用 [no counter]，保持不编号
+        \NewMathThmUncounted{exs}{练习}{exer}{math-bd-aoi}{math-bg-aoi}
+    \else        
+        \NewMathThm{def}{定义}{def}{bw-bd}{bw-bg}
+        \NewMathThm{thm}{定理}{thm}{bw-bd}{bw-bg}
+        \NewMathThm{exm}{例}{exm}{bw-bd}{bw-bg}
+        \NewMathThm{warn}{错误}{warn}{bw-bd}{bw-bg}
+        \NewMathThm{tip}{提示}{tip}{bw-bd}{bw-bg}
+        % 原来的 lx 使用 [no counter]，保持不编号
+        \NewMathThmUncounted{exs}{练习}{exer}{bw-bd}{bw-bg}
+    \fi
 }
 % ----------------------------------
 

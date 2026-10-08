@@ -13,9 +13,10 @@
 % \thmwithsectiontrue   % 颜色框随 section 编号（默认）
 % \thmwithsectionfalse  % 颜色框全局编号
 \thmwithsectionfalse
+\colormodetrue
 % 显示答案与解析设置
 % \showanswerstrue      % 显示答案（默认）
-% \showanswerfalse      % 不显示答案
+% \showanswersfalse      % 不显示答案
 % \showexplanationstrue   % 显示解析（默认）
 % \showexplanationsfalse  % 不显示解析
 \showanswerstrue
@@ -298,44 +299,44 @@ for k,v in test.items():
 %         这是一个测试文本
 %     \end{theorem}
 % \end{lstlisting}
-    \begin{dy}{测试}
+    \begin{dfn}{测试}
     :这是一个测试定义
-    \end{dy}
-    \begin{dl}{}
+    \end{dfn}
+    \begin{thm}{}
     :这是一个测试定理
-    \end{dl}
-    \begin{lz}{}
+    \end{thm}
+    \begin{exm}{}
     :这是一个测试例子
-    \end{lz}
-    \begin{ts}{}
+    \end{exm}
+    \begin{tip}{}   
     :这是一个测试提示
-    \end{ts}
-    \begin{cw}{}
+    \end{tip}
+    \begin{warn}{}
     :这是一个测试错误
-    \end{cw}
-    \begin{lx}{}
+    \end{warn}
+    \begin{exs}{}
     :这是一个测试练习
-    \end{lx}
+    \end{exs}
 \begin{lstlisting}[language={[LaTeX]TeX}]
     % 在环境内容开始前加一个字符就正常显示，不然会吞掉一个字符
-    \begin{dy}{测试}
+    \begin{dfn}{测试}
     :这是一个测试定义
-    \end{dy}
-    \begin{dl}{}
+    \end{dfn}
+    \begin{thm}{}
     :这是一个测试定理
-    \end{dl}
-    \begin{lz}{}
+    \end{thm}
+    \begin{exm}{}
     :这是一个测试例子
-    \end{lz}
-    \begin{ts}{}
+    \end{exm}
+    \begin{tip}{}   
     :这是一个测试提示
-    \end{ts}
-    \begin{cw}{}
+    \end{tip}
+    \begin{warn}{}
     :这是一个测试错误
-    \end{cw}
-    \begin{lx}{}
+    \end{warn}
+    \begin{exs}{}
     :这是一个测试练习
-    \end{lx}
+    \end{exs}
 \end{lstlisting}
 \newpage
 \section{公式*}
@@ -364,8 +365,13 @@ f(x)=a_n x^n + a_{n-1}x^{n-1}+\cdots + a_0
     \hline
     $5/8,\frac{5}{8}$ & \verb|5/8,\frac{5}{8}| & $\sqrt[3]{2}$ & \verb|\sqrt[3]{2}| \\
     \hline   
-\end{tabular}
-
+\end{tabular}\\
+以下为行内公式测试：\\
+如图，线段 \(P_1 P_2\) 的端点 \(P_1\)，\(P_2\) 的坐标分别是$(x_1，y_1)$，$(x_2，y_2)$，
+点 \(P\) 是直线 \(P_1 P_2\) 上异于 \(P_1\)，\(P_2\) 的点，当 \(\overrightarrow{P_1 P }=\lambda\overrightarrow{PP_2}\) 
+($\lambda\neq 0$且 \(\lambda\neq 1\)) 时，\(\overrightarrow{OP} =\frac{1}{1 + \lambda} \overrightarrow{OP_1} + \frac{\lambda}{1 + \lambda} \overrightarrow{OP_2}\)，
+点 \(P\) 的坐标是 \(\left(\frac{x_1 + \lambda x_2}{1 + \lambda} , \frac{y_1 + \lambda y_2}{1 + \lambda}\right)\)，
+当 \(\lambda>0\) 时，点 \(P\) 在线段 \(P_1 P_2\) 上，称为内分点；当 \(\lambda<0\) 且 \(\lambda\neq -1\) 时，点 \(P\) 在线段 \(P_1 P_2\) 的延长线上，称为外分点。
 
 
 
